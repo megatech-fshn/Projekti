@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TeleCom Plus | Kreu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/improvements.css" />
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark nav-glass sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">TeleCom Plus</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                    <li class="nav-item"><a class="nav-link" href="customer-service.html">Customer Service</a></li>
+          <li class="nav-item"><a class="nav-link" href="#stores-section">Dyqanet</a></li>
+          <li class="nav-item"><a class="nav-link" href="about-platform.html">Rreth Platformës</a></li>
+        </ul>
+        <ul class="navbar-nav ms-lg-3 align-items-lg-center gap-lg-2" id="navAuthArea"></ul>
+      </div>
+    </div>
+  </nav>
+
+<header class="hero-section">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-6">
+        <span class="pill-badge">Përvojë moderne për çdo klient</span>
+        <h1 class="display-5 fw-bold mt-3">Gjithçka që të duhet për llogarinë, faturat dhe shërbimet e tua.</h1>
+        <p class="lead text-light-emphasis mt-3">
+          Një platformë e ndërtuar për t’ju ofruar akses të shpejtë te pagesat,
+          faturat, paketat aktive dhe mbështetja ndaj klientit, në çdo kohë dhe nga çdo pajisje.
+        </p>
+        
+          <div class="d-flex flex-wrap gap-3 mt-4" id="heroActionArea"></div>
+
+          <div class="row g-3 mt-4">
+            <div class="col-sm-4">
+              <div class="mini-stat">
+                <h3>24/7</h3>
+                <p>Akses i vazhdueshëm</p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="mini-stat">
+                <h3>Smart</h3>
+                <p>Njoftime dhe histori</p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="mini-stat">
+                <h3>Fast</h3>
+                <p>Pagesa të shpejta</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="hero-card" id="heroCard">
+            <!-- Content injected by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+<section class="section-space">
+  <div class="container">
+    <div class="section-title text-center">
+      <span class="pill-badge dark">Shërbimet Kryesore</span>
+      <h2 class="mt-3">Funksionet kryesore të platformës</h2>
+      <p class="text-muted">Shërbimet dhe veprimet kryesore që ndihmojnë përdoruesit në menaxhimin e llogarisë, pagesave dhe informacionit.</p>
+    </div>
+
+      <div class="row g-4 mt-2">
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card h-100">
+            <div class="feature-icon">💳</div>
+            <h5>Pagesa Online</h5>
+            <p>Kryej pagesat në mënyrë të shpejtë dhe shiko statusin e tyre menjëherë.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card h-100">
+            <div class="feature-icon">🧾</div>
+            <h5>Detaje Fature</h5>
+            <p>Shiko faturat, afatet, historikun dhe detajet e secilës pagesë.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card h-100">
+            <div class="feature-icon">🔔</div>
+            <h5>Njoftime</h5>
+            <p>Merr lajmërime për skadime, pagesa të kryera dhe informacione nga kompania.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card h-100">
+            <div class="feature-icon">📦</div>
+            <h5>Paketa dhe Plane</h5>
+            <p>Krahaso opsionet e shërbimeve dhe shiko planin aktual të llogarisë.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-light" id="stores-section">
+    <div class="container">
+      <div class="section-title text-center">
+        <span class="pill-badge dark">Pikat e Dyqaneve</span>
+        <h2 class="mt-3">Zgjidh një qytet dhe shiko dyqanet në hartë</h2>
+        <p class="text-muted">Kliko qytetin që dëshiron dhe në hartë do shfaqen pikat fizike të dyqaneve.</p>
+      </div>
+
+      <div class="city-grid">
+        <button class="city-btn active" data-city="Tirane">Tiranë</button>
+        <button class="city-btn" data-city="Durres">Durrës</button>
+        <button class="city-btn" data-city="Vlore">Vlorë</button>
+        <button class="city-btn" data-city="Shkoder">Shkodër</button>
+        <button class="city-btn" data-city="Elbasan">Elbasan</button>
+      </div>
+
+      <div class="row g-4 mt-3">
+        <div class="col-lg-8">
+          <div class="store-map-wrapper">
+            <div id="storeMap"></div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="store-list-card">
+            <h5 class="mb-3">Dyqanet në qytetin e zgjedhur</h5>
+            <div id="storeList" class="store-list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="section-space">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-6">
+        <h2>Vlerat që ofron platforma</h2>
+        <p class="text-muted">
+          Kjo platformë synon të përmirësojë mënyrën se si përdoruesit menaxhojnë
+          shërbimet dhe detyrimet e tyre financiare, duke ofruar transparencë,
+          organizim dhe akses të shpejtë në informacionin kryesor.
+        </p>
+        <ul class="check-list">
+          <li>Kontroll i qartë i faturave dhe afateve të pagesës</li>
+          <li>Qasje e centralizuar në shërbimet dhe transaksionet</li>
+          <li>Mbështetje e vazhdueshme për klientët</li>
+          <li>Përvojë e thjeshtë dhe funksionale në përdorim</li>
+        </ul>
+      </div>
+
+        <div class="col-lg-6">
+          <div class="info-panel">
+            <div class="info-panel-item">
+              <span>Klientë Aktivë</span>
+              <strong>12,450</strong>
+            </div>
+            <div class="info-panel-item">
+              <span>Fatura të paguara sot</span>
+              <strong>1,125</strong>
+            </div>
+            <div class="info-panel-item">
+              <span>Disponueshmëria e sistemit</span>
+              <strong>99.9%</strong>
+            </div>
+            <div class="info-panel-item">
+              <span>Shërbime aktive</span>
+              <strong>Internet / Mobile / TV</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space pt-0">
+    <div class="container text-center">
+      <h2 id="bottomCtaTitle">Hapi tjetër</h2>
+      <p class="text-muted" id="bottomCtaText">Hyr ose krijo llogari për të vazhduar me menaxhimin e shërbimeve.</p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap mt-4" id="bottomCtaArea"></div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container d-flex flex-column flex-md-row justify-content-between gap-3">
+      <p class="mb-0">© 2026 TeleCom Plus. Të gjitha të drejtat e rezervuara.</p>
+      <div class="d-flex gap-3">
+        <a data-icon="◎" href="customer-service.html">Customer Service</a>
+        <a href="#stores-section">Dyqanet</a>
+        <a data-icon="◐" href="about-platform.html">Rreth Platformës</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/improvements.js"></script>
+</body>
+</html>

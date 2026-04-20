@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TeleCom Plus | Detajet e Faturës</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/improvements.css" />
+</head>
+<body class="dashboard-body">
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div>
+        <a href="index.html" class="brand-link sidebar-brand">TeleCom Plus</a>
+        <div class="sidebar-user-info" id="sidebarUserInfo" style="margin-top:12px;padding:10px 12px;background:rgba(129,140,248,0.08);border-radius:10px;border:1px solid rgba(129,140,248,0.15)">
+          <div style="font-size:0.72rem;color:var(--tx-3);margin-bottom:2px">I kyçur si</div>
+          <div id="sidebarUserName" style="font-size:0.84rem;font-weight:600;color:var(--tx-1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">—</div>
+          <div id="sidebarUserRole" style="font-size:0.7rem;color:var(--indigo);margin-top:1px">—</div>
+        </div>
+        <nav class="sidebar-nav mt-4">
+          <a data-icon="⬡" href="dashboard.html">Dashboard</a>
+          <a data-icon="◈" class="active" href="bills.html">Faturat</a>
+          <a data-icon="◇" href="payments.html">Pagesat</a>
+          <a data-icon="⇄" href="transactions.html">Transaksionet</a>
+          <a data-icon="◉" href="notifications.html">Njoftime</a>
+          <a data-icon="▣" href="services.html">Shërbimet</a>
+          <a data-icon="○" href="profile.html">Profili</a>
+          <a data-icon="◎" href="customer-service.html">Customer Service</a>
+          <a data-icon="◆" href="admin.html">Admin</a>
+        </nav>
+      </div>
+      <div class="sidebar-footer">
+        <a href="index.html" class="btn btn-outline-light w-100 mb-2">Kthehu në homepage</a>
+        <button type="button" class="btn btn-outline-danger w-100" id="sidebarSignOutBtn">⏻ Sign Out</button>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+
+<div class="topbar">
+  <div>
+    <h2 class="mb-1">Detajet e Faturës</h2>
+    <p class="text-muted mb-0">Kontrollo elementët e faturës dhe statusin e saj.</p>
+  </div>
+  <div class="topbar-actions">
+    <button id="printInvoiceBtn" class="btn btn-outline-primary">Printo</button>
+    <a href="payments.html" id="payNowBtn" class="btn btn-primary">Paguaj Tani</a>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-lg-8">
+    <div class="dashboard-card">
+      <div class="card-header-inline">
+        <h5 class="mb-0" id="invoiceHeaderTitle">Fatura</h5>
+        <span id="invoiceStatusBadge" class="status-badge warning">Papaguar</span>
+      </div>
+
+      <div class="invoice-meta-grid mt-4">
+        <div class="invoice-meta-item"><span>Nr. Faturës</span><strong id="invoiceId">-</strong></div>
+        <div class="invoice-meta-item"><span>Shërbimi</span><strong id="invoiceService">-</strong></div>
+        <div class="invoice-meta-item"><span>Data</span><strong id="invoiceDate">-</strong></div>
+        <div class="invoice-meta-item"><span>Afati</span><strong id="invoiceDueDate">-</strong></div>
+      </div>
+
+      <div class="table-responsive mt-4">
+        <table class="table custom-table align-middle">
+          <thead>
+            <tr>
+              <th>Përshkrimi</th>
+              <th>Sasia</th>
+              <th>Çmimi</th>
+              <th>Nëntotali</th>
+            </tr>
+          </thead>
+          <tbody id="invoiceItemsTable"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="dashboard-card">
+      <h5 class="mb-3">Përmbledhje</h5>
+      <div class="summary-row"><span>Klienti</span><strong id="invoiceCustomer">-</strong></div>
+      <div class="summary-row"><span>Statusi</span><strong id="invoiceStatusText">-</strong></div>
+      <div class="summary-row"><span>Shuma totale</span><strong id="invoiceAmount">0 ALL</strong></div>
+      <div class="summary-row"><span>Metoda e rekomanduar</span><strong>Kartë / Transfer</strong></div>
+      <div class="quick-actions mt-4">
+        <a href="bills.html" class="btn btn-outline-primary">Kthehu te Faturat</a>
+        <a href="notifications.html" class="btn btn-outline-dark">Qendra e Njoftimeve</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </main>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/improvements.js"></script>
+  <script>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const billId = params.get('id');
+      const btn = document.getElementById('payNowBtn');
+      if (btn && billId) btn.href = 'payments.html?bill=' + encodeURIComponent(billId);
+    })();
+  </script>
+</body>
+</html>

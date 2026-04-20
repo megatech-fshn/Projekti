@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TeleCom Plus | Register</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/improvements.css" />
+</head>
+<body class="auth-page">
+  <div class="auth-wrapper">
+    <div class="auth-card auth-card-wide">
+      <div class="text-center mb-4">
+        <a href="index.html" class="brand-link">TeleCom Plus</a>
+        <h2 class="mt-3">Krijo Llogari</h2>
+        <p class="text-muted">Plotëso të dhënat për të krijuar profilin tënd në platformë.</p>
+      </div>
+
+      <form id="registerForm" class="needs-validation-custom" novalidate>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="firstName" class="form-label">Emri</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" required />
+            <small class="error-message"></small>
+          </div>
+
+          <div class="col-md-6">
+            <label for="lastName" class="form-label">Mbiemri</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" required />
+            <small class="error-message"></small>
+          </div>
+
+          <div class="col-md-6">
+            <label for="registerEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="registerEmail" name="email" required />
+            <small class="error-message"></small>
+          </div>
+
+          <div class="col-md-6">
+            <label for="phoneNumber" class="form-label">Numri i Telefonit</label>
+            <input type="tel" class="form-control" id="phoneNumber" name="phone" placeholder="+355 69 123 4567" inputmode="tel" maxlength="16" autocomplete="tel" required />
+            <small class="error-message"></small>
+          </div>
+
+          <div class="col-md-6">
+            <label for="customerType" class="form-label">Lloji i Klientit</label>
+            <select class="form-select" id="customerType" name="customerType" required>
+              <option value="">Zgjidh...</option>
+              <option>Individual</option>
+              <option>Business</option>
+            </select>
+            <small class="error-message"></small>
+          </div>
+
+          <div class="col-md-6">
+            <label for="servicePlan" class="form-label">Paketa e Preferuar</label>
+            <select class="form-select" id="servicePlan" name="servicePlan" required>
+              <option value="">Zgjidh...</option>
+              <option>Internet Unlimited 300 Mbps</option>
+              <option>Mobile Premium 25GB</option>
+              <option>TV + Internet Family</option>
+              <option>Business Fiber Pro</option>
+            </select>
+            <small class="error-message"></small>
+          </div>
+
+          <div class="col-12" id="registerPaymentSection" style="display:none;">
+            <div class="dashboard-card" style="padding:20px;">
+              <div class="card-header-inline mb-3">
+                <h5 class="mb-0">Pagesa e Paketës</h5>
+                <span class="notification-pill">E detyrueshme</span>
+              </div>
+
+              <div class="info-panel mb-4">
+                <div class="info-panel-item"><span>Paketa</span><strong id="registerSelectedPlanName">-</strong></div>
+                <div class="info-panel-item"><span>Detaje</span><strong id="registerSelectedPlanMeta">-</strong></div>
+                <div class="info-panel-item"><span>Shuma</span><strong id="registerSelectedPlanAmount">0 ALL</strong></div>
+              </div>
+
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="registerPaymentMethod" class="form-label">Metoda e pagesës</label>
+                  <select class="form-select" id="registerPaymentMethod" required disabled>
+                    <option value="">Zgjidh...</option>
+                    <option>Kartë Krediti</option>
+                    <option>Kartë Debiti</option>
+                    <option>PayPal</option>
+                    <option>Transfer Bankar</option>
+                  </select>
+                  <small class="error-message"></small>
+                </div>
+              </div>
+
+              <div id="registerCardPaymentFields" class="row g-3 mt-1" style="display:none;">
+                <div class="col-md-12">
+                  <label for="registerCardHolder" class="form-label">Emri në Kartë</label>
+                  <input type="text" class="form-control" id="registerCardHolder" required disabled />
+                  <small class="error-message"></small>
+                </div>
+                <div class="col-md-12">
+                  <label for="registerCardNumber" class="form-label">Numri i Kartës</label>
+                  <input type="text" class="form-control" id="registerCardNumber" maxlength="19" inputmode="numeric" required disabled />
+                  <small class="error-message"></small>
+                </div>
+                <div class="col-md-6">
+                  <label for="registerExpiryDate" class="form-label">MM/YY</label>
+                  <input type="text" class="form-control" id="registerExpiryDate" maxlength="5" inputmode="numeric" required disabled />
+                  <small class="error-message"></small>
+                </div>
+                <div class="col-md-6">
+                  <label for="registerCvv" class="form-label">CVV</label>
+                  <input type="text" class="form-control" id="registerCvv" maxlength="4" inputmode="numeric" required disabled />
+                  <small class="error-message"></small>
+                </div>
+              </div>
+
+              <div id="registerPaypalPaymentFields" class="row g-3 mt-1" style="display:none;">
+                <div class="col-md-12">
+                  <label for="registerPaypalEmail" class="form-label">Email i PayPal</label>
+                  <input type="email" class="form-control" id="registerPaypalEmail" required disabled />
+                  <small class="error-message"></small>
+                </div>
+              </div>
+
+              <div id="registerBankTransferFields" class="row g-3 mt-1" style="display:none;">
+                <div class="col-md-5">
+                  <label for="registerBankName" class="form-label">Banka</label>
+                  <input type="text" class="form-control" id="registerBankName" required disabled />
+                  <small class="error-message"></small>
+                </div>
+                <div class="col-md-7">
+                  <label for="registerBankIban" class="form-label">IBAN</label>
+                  <input type="text" class="form-control" id="registerBankIban" required disabled />
+                  <small class="error-message"></small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="registerPassword" class="form-label">Password</label>
+            <div class="input-group">
+              <input type="password" class="form-control" id="registerPassword" name="password" placeholder="Minimumi 8 karaktere, 1 shkronjë e madhe dhe 1 numër" required minlength="8" autocomplete="new-password" />
+              <button class="btn btn-outline-secondary" type="button" id="toggleRegPw" data-toggle-password="registerPassword" aria-label="Shfaq fjalëkalimin" style="border-color:var(--bd);background:var(--bg-input);color:var(--tx-2)">👁</button>
+            </div>
+            <small class="error-message"></small>
+          </div>
+
+          <div class="col-md-6">
+            <label for="confirmPassword" class="form-label">Konfirmo Password</label>
+            <div class="input-group">
+              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Ripërsërit fjalëkalimin" required minlength="8" autocomplete="new-password" />
+              <button class="btn btn-outline-secondary" type="button" id="toggleConfirmPw" data-toggle-password="confirmPassword" aria-label="Shfaq fjalëkalimin" style="border-color:var(--bd);background:var(--bg-input);color:var(--tx-2)">👁</button>
+            </div>
+            <small class="error-message"></small>
+          </div>
+
+          <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="termsCheck" name="termsCheck" required />
+              <label class="form-check-label" for="termsCheck">
+                Pranoj kushtet dhe politikat e përdorimit
+              </label>
+            </div>
+            <small class="error-message d-block"></small>
+          </div>
+        </div>
+
+        <div id="registerErrorMessage" class="alert alert-danger d-none mt-4">Ky email ekziston tashmë.</div>
+
+        <button type="submit" class="btn btn-primary w-100 mt-4">Krijo Llogari dhe Paguaj</button>
+
+        <p class="text-center mt-4 mb-0">
+          Ke tashmë llogari?
+          <a href="login.html" class="text-decoration-none fw-semibold">Bëj Login</a>
+        </p>
+      </form>
+    </div>
+  </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/improvements.js"></script>
+</body>
+</html>
