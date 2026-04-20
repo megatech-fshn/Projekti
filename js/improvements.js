@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   TeleCom Plus — Professional Improvements v1.0
+   Telecom Albania — Professional Improvements v1.0
    Implements 12 professional enhancements:
    1.  Favicon & Branding
    2.  Loading / Skeleton States
@@ -156,51 +156,108 @@ function initMobileDrawer() {
   const sidebar = document.querySelector('.sidebar');
   if (!sidebar) return;
 
-  // Create overlay
-  const overlay = document.createElement('div');
-  overlay.className = 'tc-drawer-overlay';
-  overlay.setAttribute('aria-hidden', 'true');
-  document.body.appendChild(overlay);
+  const mobileQuery = window.matchMedia('(max-width: 992px)');
 
-  // Create hamburger button
-  const hamburger = document.createElement('button');
-  hamburger.className = 'tc-hamburger';
-  hamburger.type = 'button';
-  hamburger.setAttribute('aria-label', 'Hap menunë');
-  hamburger.setAttribute('aria-expanded', 'false');
+  // Prevent duplicate toolbar / overlay elements on re-init
+  document.querySelectorAll('.tc-drawer-overlay').forEach((node, index) => {
+    if (index > 0) node.remove();
+  });
+  document.querySelectorAll('.tc-hamburger').forEach((node, index) => {
+    if (index > 0) node.remove();
+  });
+
+  // Always reset sidebar state on page load (fixes stuck-open state across navigation)
+  sidebar.classList.remove('tc-sidebar--open');
+  document.body.style.overflow = '';
+
+  let overlay = document.querySelector('.tc-drawer-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.className = 'tc-drawer-overlay';
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(overlay);
+  }
+
+  let hamburger = document.querySelector('.tc-hamburger');
+  const topbar = document.querySelector('.topbar');
+  if (!hamburger && topbar) {
+    hamburger = document.createElement('button');
+    hamburger.className = 'tc-hamburger';
+    hamburger.type = 'button';
+    hamburger.setAttribute('aria-label', 'Hap menunë');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.innerHTML = `<span></span><span></span><span></span>`;
+    topbar.prepend(hamburger);
+  }
+
+  if (!hamburger) return;
+
   sidebar.id = 'tc-sidebar';
   hamburger.setAttribute('aria-controls', 'tc-sidebar');
-  hamburger.innerHTML = `<span></span><span></span><span></span>`;
 
-  // Find topbar to inject button
-  const topbar = document.querySelector('.topbar');
-  if (topbar) topbar.prepend(hamburger);
+  function setDrawerState(isOpen) {
+    const shouldOpen = !!isOpen && mobileQuery.matches;
+    sidebar.classList.toggle('tc-sidebar--open', shouldOpen);
+    overlay.classList.toggle('tc-drawer-overlay--visible', shouldOpen);
+    overlay.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
+    hamburger.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+    hamburger.classList.toggle('is-open', shouldOpen);
+    document.body.style.overflow = shouldOpen ? 'hidden' : '';
+  }
 
   function openDrawer() {
-    sidebar.classList.add('tc-sidebar--open');
-    overlay.classList.add('tc-drawer-overlay--visible');
-    hamburger.setAttribute('aria-expanded', 'true');
-    hamburger.classList.add('is-open');
-    document.body.style.overflow = 'hidden';
+    setDrawerState(true);
   }
 
   function closeDrawer() {
-    sidebar.classList.remove('tc-sidebar--open');
-    overlay.classList.remove('tc-drawer-overlay--visible');
-    hamburger.setAttribute('aria-expanded', 'false');
-    hamburger.classList.remove('is-open');
-    document.body.style.overflow = '';
+    setDrawerState(false);
   }
 
-  hamburger.addEventListener('click', () => {
+  function toggleDrawer(event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
     sidebar.classList.contains('tc-sidebar--open') ? closeDrawer() : openDrawer();
+  }
+
+  if (hamburger.dataset.drawerBound !== 'true') {
+    hamburger.dataset.drawerBound = 'true';
+    hamburger.addEventListener('click', toggleDrawer);
+    hamburger.addEventListener('touchend', toggleDrawer, { passive: false });
+  }
+
+  if (overlay.dataset.drawerBound !== 'true') {
+    overlay.dataset.drawerBound = 'true';
+    overlay.addEventListener('click', closeDrawer);
+    overlay.addEventListener('touchend', closeDrawer, { passive: true });
+  }
+
+  const closeOnNavigate = () => closeDrawer();
+  sidebar.querySelectorAll('a, button').forEach(node => {
+    if (node.dataset.drawerNavBound === 'true') return;
+    node.dataset.drawerNavBound = 'true';
+    node.addEventListener('click', closeOnNavigate, true);
+    node.addEventListener('touchend', closeOnNavigate, { capture: true, passive: true });
   });
 
-  overlay.addEventListener('click', closeDrawer);
+  const syncForViewport = () => {
+    if (!mobileQuery.matches) closeDrawer();
+  };
+
+  if (!document.body.dataset.drawerViewportBound) {
+    document.body.dataset.drawerViewportBound = 'true';
+    mobileQuery.addEventListener('change', syncForViewport);
+    window.addEventListener('resize', syncForViewport);
+    window.addEventListener('pageshow', closeDrawer);
+    window.addEventListener('pagehide', closeDrawer);
+  }
 
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeDrawer();
   });
+
+  closeDrawer();
 }
 
 /* ─────────────────────────────────────────────────────────
@@ -340,7 +397,7 @@ function injectFooter() {
   footer.innerHTML = `
     <div class="tc-footer__inner">
       <div class="tc-footer__brand">
-        <span class="tc-footer__logo">TeleCom Plus</span>
+        <span class="tc-footer__logo">Telecom Albania</span>
         <span class="tc-footer__tagline">Lidhja që të mban gjithmonë aktiv.</span>
       </div>
       <nav class="tc-footer__links" aria-label="Footer navigim">
@@ -349,7 +406,7 @@ function injectFooter() {
         <a href="customer-service.html">Mbështetja</a>
       </nav>
       <div class="tc-footer__copy">
-        &copy; ${new Date().getFullYear()} TeleCom Plus. Të gjitha të drejtat të rezervuara.
+        &copy; ${new Date().getFullYear()} Telecom Albania. Të gjitha të drejtat të rezervuara.
       </div>
     </div>
   `;

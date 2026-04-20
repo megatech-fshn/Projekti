@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TeleCom Plus | Register</title>
+  <title>Telecom Albania | Register</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
   <div class="auth-wrapper">
     <div class="auth-card auth-card-wide">
       <div class="text-center mb-4">
-        <a href="index.html" class="brand-link">TeleCom Plus</a>
+        <a href="index.html" class="brand-link">Telecom Albania</a>
         <h2 class="mt-3">Krijo Llogari</h2>
         <p class="text-muted">Plotëso të dhënat për të krijuar profilin tënd në platformë.</p>
       </div>
@@ -48,99 +48,29 @@
           </div>
 
           <div class="col-md-6">
-            <label for="customerType" class="form-label">Lloji i Klientit</label>
-            <select class="form-select" id="customerType" name="customerType" required>
-              <option value="">Zgjidh...</option>
-              <option>Individual</option>
-              <option>Business</option>
+            <label for="registerCity" class="form-label">Qyteti</label>
+            <select class="form-select" id="registerCity" name="city" required>
+              <option value="">Zgjidh qytetin...</option>
+              <option value="Tiranë">Tiranë</option>
+              <option value="Durrës">Durrës</option>
+              <option value="Vlorë">Vlorë</option>
+              <option value="Shkodër">Shkodër</option>
+              <option value="Elbasan">Elbasan</option>
+              <option value="Fier">Fier</option>
+              <option value="Korçë">Korçë</option>
+              <option value="Berat">Berat</option>
+              <option value="Lushnjë">Lushnjë</option>
+              <option value="Pogradec">Pogradec</option>
+              <option value="Kavajë">Kavajë</option>
+              <option value="Gjirokastër">Gjirokastër</option>
+              <option value="Sarandë">Sarandë</option>
+              <option value="Lezhë">Lezhë</option>
+              <option value="Kukës">Kukës</option>
+              <option value="Peshkopi">Peshkopi</option>
             </select>
             <small class="error-message"></small>
           </div>
 
-          <div class="col-md-6">
-            <label for="servicePlan" class="form-label">Paketa e Preferuar</label>
-            <select class="form-select" id="servicePlan" name="servicePlan" required>
-              <option value="">Zgjidh...</option>
-              <option>Internet Unlimited 300 Mbps</option>
-              <option>Mobile Premium 25GB</option>
-              <option>TV + Internet Family</option>
-              <option>Business Fiber Pro</option>
-            </select>
-            <small class="error-message"></small>
-          </div>
-
-          <div class="col-12" id="registerPaymentSection" style="display:none;">
-            <div class="dashboard-card" style="padding:20px;">
-              <div class="card-header-inline mb-3">
-                <h5 class="mb-0">Pagesa e Paketës</h5>
-                <span class="notification-pill">E detyrueshme</span>
-              </div>
-
-              <div class="info-panel mb-4">
-                <div class="info-panel-item"><span>Paketa</span><strong id="registerSelectedPlanName">-</strong></div>
-                <div class="info-panel-item"><span>Detaje</span><strong id="registerSelectedPlanMeta">-</strong></div>
-                <div class="info-panel-item"><span>Shuma</span><strong id="registerSelectedPlanAmount">0 ALL</strong></div>
-              </div>
-
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <label for="registerPaymentMethod" class="form-label">Metoda e pagesës</label>
-                  <select class="form-select" id="registerPaymentMethod" required disabled>
-                    <option value="">Zgjidh...</option>
-                    <option>Kartë Krediti</option>
-                    <option>Kartë Debiti</option>
-                    <option>PayPal</option>
-                    <option>Transfer Bankar</option>
-                  </select>
-                  <small class="error-message"></small>
-                </div>
-              </div>
-
-              <div id="registerCardPaymentFields" class="row g-3 mt-1" style="display:none;">
-                <div class="col-md-12">
-                  <label for="registerCardHolder" class="form-label">Emri në Kartë</label>
-                  <input type="text" class="form-control" id="registerCardHolder" required disabled />
-                  <small class="error-message"></small>
-                </div>
-                <div class="col-md-12">
-                  <label for="registerCardNumber" class="form-label">Numri i Kartës</label>
-                  <input type="text" class="form-control" id="registerCardNumber" maxlength="19" inputmode="numeric" required disabled />
-                  <small class="error-message"></small>
-                </div>
-                <div class="col-md-6">
-                  <label for="registerExpiryDate" class="form-label">MM/YY</label>
-                  <input type="text" class="form-control" id="registerExpiryDate" maxlength="5" inputmode="numeric" required disabled />
-                  <small class="error-message"></small>
-                </div>
-                <div class="col-md-6">
-                  <label for="registerCvv" class="form-label">CVV</label>
-                  <input type="text" class="form-control" id="registerCvv" maxlength="4" inputmode="numeric" required disabled />
-                  <small class="error-message"></small>
-                </div>
-              </div>
-
-              <div id="registerPaypalPaymentFields" class="row g-3 mt-1" style="display:none;">
-                <div class="col-md-12">
-                  <label for="registerPaypalEmail" class="form-label">Email i PayPal</label>
-                  <input type="email" class="form-control" id="registerPaypalEmail" required disabled />
-                  <small class="error-message"></small>
-                </div>
-              </div>
-
-              <div id="registerBankTransferFields" class="row g-3 mt-1" style="display:none;">
-                <div class="col-md-5">
-                  <label for="registerBankName" class="form-label">Banka</label>
-                  <input type="text" class="form-control" id="registerBankName" required disabled />
-                  <small class="error-message"></small>
-                </div>
-                <div class="col-md-7">
-                  <label for="registerBankIban" class="form-label">IBAN</label>
-                  <input type="text" class="form-control" id="registerBankIban" required disabled />
-                  <small class="error-message"></small>
-                </div>
-              </div>
-            </div>
-          </div>
 
           <div class="col-md-6">
             <label for="registerPassword" class="form-label">Password</label>
@@ -173,7 +103,7 @@
 
         <div id="registerErrorMessage" class="alert alert-danger d-none mt-4">Ky email ekziston tashmë.</div>
 
-        <button type="submit" class="btn btn-primary w-100 mt-4">Krijo Llogari dhe Paguaj</button>
+        <button type="submit" class="btn btn-primary w-100 mt-4">Krijo Llogari</button>
 
         <p class="text-center mt-4 mb-0">
           Ke tashmë llogari?

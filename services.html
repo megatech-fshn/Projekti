@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TeleCom Plus | Shërbimet</title>
+  <title>Telecom Albania | Shërbimet</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
   <div class="dashboard-layout">
     <aside class="sidebar">
       <div>
-        <a href="index.html" class="brand-link sidebar-brand">TeleCom Plus</a>
+        <a href="index.html" class="brand-link sidebar-brand">Telecom Albania</a>
         <nav class="sidebar-nav mt-4">
           <a data-icon="⬡" href="dashboard.html">Dashboard</a>
           <a data-icon="◈" href="bills.html">Faturat</a>
@@ -142,6 +142,21 @@
     </div>
   </div>
 </div>
+
+<div class="simple-modal-overlay" id="serviceConfirmFreePlanModal">
+  <div class="simple-modal-box">
+    <div class="p-4 text-center">
+      <div style="font-size:2.5rem;margin-bottom:12px;">⚠️</div>
+      <h4 class="mb-2">Hiq Planin Aktiv?</h4>
+      <p class="text-muted mb-4">A je i sigurt që do të heqësh planin që ke aktiv? Llogaria jote do të kalojë tek "No active plan" dhe nuk do të ketë pagesë.</p>
+      <div class="d-flex gap-3 justify-content-center">
+        <button type="button" class="btn btn-outline-secondary" id="confirmFreePlanNo">Jo, Anulo</button>
+        <button type="button" class="btn btn-danger" id="confirmFreePlanYes">Po, Hiq Planin</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <div class="simple-modal-overlay" id="serviceSuccessModal">
   <div class="simple-modal-box">

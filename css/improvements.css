@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   TeleCom Plus — Professional Improvements Styles v1.0
+   Telecom Albania — Professional Improvements Styles v1.0
 ═══════════════════════════════════════════════════════════════ */
 
 /* ─────────────────────────────────────────────────────────
@@ -24,7 +24,7 @@
   padding: 12px 16px;
   border-radius: 12px;
   border: 1px solid var(--bd, rgba(148,163,184,0.1));
-  background: var(--bg-raised, #0c1628);
+  background: var(--bg-raised, #110e30);
   box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.04);
   font-size: 0.86rem;
   font-family: var(--font, 'Space Grotesk', sans-serif);
@@ -82,9 +82,9 @@
   height: 13px;
   border-radius: 6px;
   background: linear-gradient(90deg,
-    var(--bg-hover, #162540) 25%,
+    var(--bg-hover, #1d1450) 25%,
     rgba(255,255,255,0.06) 50%,
-    var(--bg-hover, #162540) 75%
+    var(--bg-hover, #1d1450) 75%
   );
   background-size: 800px 100%;
   animation: skeleton-shimmer 1.6s ease-in-out infinite;
@@ -100,7 +100,7 @@
 .skeleton-card {
   border: 1px solid var(--bd, rgba(148,163,184,0.1));
   border-radius: 14px;
-  background: var(--bg-raised, #0c1628);
+  background: var(--bg-raised, #110e30);
   padding: 15px;
 }
 
@@ -145,7 +145,7 @@
   align-items: center;
   gap: 5px;
   width: 38px; height: 38px;
-  background: var(--bg-raised, #0c1628);
+  background: var(--bg-raised, #110e30);
   border: 1px solid var(--bd, rgba(148,163,184,0.1));
   border-radius: 8px;
   cursor: pointer;
@@ -165,32 +165,55 @@
 .tc-hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 .tc-drawer-overlay {
-  position: fixed; inset: 0;
+  position: fixed;
+  inset: 0;
   background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
   z-index: 99;
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.25s;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
 }
 .tc-drawer-overlay--visible {
-  opacity: 1; pointer-events: all;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.topbar {
+  position: relative;
+  z-index: 2;
+}
+
+.tc-hamburger {
+  position: relative;
+  z-index: 101;
+  pointer-events: auto;
+  touch-action: manipulation;
 }
 
 @media (max-width: 992px) {
-  .tc-hamburger { display: flex; }
+  .tc-hamburger {
+    display: flex;
+    flex: 0 0 auto;
+    align-self: flex-start;
+  }
 
   .sidebar {
     position: fixed !important;
     left: 0; top: 0; bottom: 0;
     width: 260px !important;
     z-index: 100;
-    transform: translateX(-100%);
+    transform: translate3d(-100%, 0, 0);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
+    will-change: transform;
   }
 
   .sidebar.tc-sidebar--open {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
     box-shadow: 8px 0 40px rgba(0,0,0,0.5);
   }
 
@@ -247,7 +270,7 @@
 }
 .tc-ps-bar {
   flex: 1; height: 4px;
-  background: var(--bg-hover, #162540);
+  background: var(--bg-hover, #1d1450);
   border-radius: 99px;
   overflow: hidden;
 }
@@ -264,7 +287,7 @@
    10. GLOBAL FOOTER
 ───────────────────────────────────────────────────────── */
 .tc-footer {
-  background: var(--bg-raised, #0c1628);
+  background: var(--bg-raised, #110e30);
   border-top: 1px solid var(--bd, rgba(148,163,184,0.1));
   padding: 40px 0 24px;
   margin-top: 60px;
@@ -407,3 +430,32 @@ body[data-theme="light"] .tc-hamburger {
   border-color: rgba(15,31,58,0.1);
 }
 body[data-theme="light"] .tc-hamburger span { background: #0f1f3a; }
+
+/* ─────────────────────────────────────────────────────────
+   MOBILE SAFETY OVERRIDE — disable drawer on phones/tablets
+   Keeps original responsive sidebar from style.css
+───────────────────────────────────────────────────────── */
+@media (max-width: 992px) {
+  .tc-hamburger,
+  .tc-drawer-overlay {
+    display: none !important;
+  }
+
+  .sidebar {
+    position: static !important;
+    inset: auto !important;
+    width: auto !important;
+    height: auto !important;
+    transform: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+    z-index: auto !important;
+    overflow: visible !important;
+    will-change: auto !important;
+  }
+
+  .sidebar.tc-sidebar--open {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}

@@ -41,49 +41,112 @@ const APP_STORAGE = {
 
 const telecomStoreData = {
   Tirane: {
-    center: [41.3275, 19.8187],
-    zoom: 12,
+    cityMapQuery: "ONE Albania stores in Tirane, Albania",
     stores: [
-      { name: "TeleCom Plus - Qendra Tiranë", lat: 41.3272, lng: 19.8189, address: "Bulevardi Dëshmorët e Kombit, Tiranë" },
-      { name: "TeleCom Plus - Komuna e Parisit", lat: 41.3148, lng: 19.8046, address: "Komuna e Parisit, Tiranë" },
-      { name: "TeleCom Plus - TEG", lat: 41.2916, lng: 19.8729, address: "Rruga Nacionale Tiranë-Elbasan, TEG" }
+      {
+        name: "Telecom Albania - Square21",
+        address: "Rr. Muhedin Llagami, Kompleksi Square21, Tiranë",
+        mapQuery: "ONE Albania Square21, Muhedin Llagami, Kompleksi Square21, Tirana, Albania"
+      },
+      {
+        name: "Telecom Albania - TEG",
+        address: "Tirana East Gate (TEG), Tiranë",
+        mapQuery: "ONE Albania, Tirana East Gate, Tirana 1045, Albania"
+      },
+      {
+        name: "Telecom Albania - Laprakë",
+        address: "Laprakë, Tiranë",
+        mapQuery: "One Albania Lapraka Office, Tirana, Albania"
+      }
     ]
   },
   Durres: {
-    center: [41.3231, 19.4414],
-    zoom: 13,
+    cityMapQuery: "ONE Albania stores in Durres, Albania",
     stores: [
-      { name: "TeleCom Plus - Qendra Durrës", lat: 41.3235, lng: 19.4411, address: "Qendra e qytetit, Durrës" },
-      { name: "TeleCom Plus - Lagjja 13", lat: 41.3108, lng: 19.4566, address: "Lagjja 13, Durrës" }
+      {
+        name: "Telecom Albania - Aleksandër Goga",
+        address: "Lagjja nr. 6, Rruga Aleksandër Goga, Durrës",
+        mapQuery: "ONE Albania, Lagjja nr.6, Rruga Aleksander Goga, Durres, Albania"
+      },
+      {
+        name: "Telecom Albania - Rruga Dëshmorët",
+        address: "Lagjja nr. 12, Rruga Dëshmorët, Durrës",
+        mapQuery: "ONE Albania, Lagjja nr.12, Rruga Deshmoret, Durres, Albania"
+      },
+      {
+        name: "Telecom Albania - Plazh",
+        address: "Lagjja nr. 13, Rruga Pavarësia, Durrës",
+        mapQuery: "ONE Albania, Lagjja nr. 13, Rruga Pavaresia, Durres, Albania"
+      }
     ]
   },
   Vlore: {
-    center: [40.4661, 19.4914],
-    zoom: 13,
+    cityMapQuery: "ONE Albania stores in Vlore, Albania",
     stores: [
-      { name: "TeleCom Plus - Qendra Vlorë", lat: 40.4664, lng: 19.4899, address: "Sheshi i Flamurit, Vlorë" },
-      { name: "TeleCom Plus - Lungomare", lat: 40.4427, lng: 19.4945, address: "Lungomare, Vlorë" }
+      {
+        name: "Telecom Albania - Bulevardi Skele",
+        address: "Lagjia Lef Sallata, Bulevardi Skele, Vlorë",
+        mapQuery: "ONE Albania, Lagjia Lef Sallata, Bulevardi Skele, Vlore, Albania"
+      },
+      {
+        name: "Telecom Albania - Aranit Serbi",
+        address: "Lagjia 29 Nëntori, Rruga Aranit Serbi, Vlorë",
+        mapQuery: "ONE Albania, Lagjia 29 Nentori, Rruga Aranit Serbi, Vlore, Albania"
+      },
+      {
+        name: "Telecom Albania - Çole",
+        address: "Lagjia Çole, Rruga Qeriba Derri, Vlorë",
+        mapQuery: "ONE Albania, Lagjia Cole, Rruga Qeriba Derri, Vlore, Albania"
+      }
     ]
   },
   Shkoder: {
-    center: [42.0683, 19.5126],
-    zoom: 13,
+    cityMapQuery: "ONE Albania stores in Shkoder, Albania",
     stores: [
-      { name: "TeleCom Plus - Qendra Shkodër", lat: 42.0685, lng: 19.5121, address: "Qendra e qytetit, Shkodër" },
-      { name: "TeleCom Plus - Parrucë", lat: 42.0628, lng: 19.5182, address: "Zona Parrucë, Shkodër" }
+      {
+        name: "Telecom Albania - Rruga Europa",
+        address: "Lagjja Partizani, Rruga Europa, Shkodër",
+        mapQuery: "ONE Albania, Lagjja Partizani, Rruga Europa, Shkoder, Albania"
+      },
+      {
+        name: "Telecom Albania - Kole Heqimi",
+        address: "Lagjia Skënderbeg, Rr. Kole Heqimi 56, Shkodër",
+        mapQuery: "ONE Albania, Lagjia Skenderbeg, Rruga Kole Heqimi 56, Shkoder, Albania"
+      }
     ]
   },
   Elbasan: {
-    center: [41.1125, 20.0822],
-    zoom: 13,
+    cityMapQuery: "ONE Albania stores in Elbasan, Albania",
     stores: [
-      { name: "TeleCom Plus - Qendra Elbasan", lat: 41.1127, lng: 20.0828, address: "Qendra e qytetit, Elbasan" },
-      { name: "TeleCom Plus - Rruga e Stacionit", lat: 41.1083, lng: 20.0871, address: "Rruga e Stacionit, Elbasan" }
+      {
+        name: "Telecom Albania - Emin Matraxhiu",
+        address: "Lagjja Emin Matraxhiu, Elbasan",
+        mapQuery: "One Corner Elbasan, Lagjja Emin Matraxhiu, Elbasan, Albania"
+      },
+      {
+        name: "Telecom Albania - Bulevardi Qemal Stafa",
+        address: "Lagjia Kongresi i Elbasanit, Bulevardi Qemal Stafa, Elbasan",
+        mapQuery: "ONE Albania, Lagjia Kongresi i Elbasanit, Bulevardi Qemal Stafa, Elbasan, Albania"
+      },
+      {
+        name: "Telecom Albania - 11 Nëntori",
+        address: "Lagjja Luigj Gurakuqi, Rruga 11 Nëntori, Elbasan",
+        mapQuery: "ONE Albania, Lagjja Luigj Gurakuqi, Rruga 11 Nentori, Elbasan, Albania"
+      }
     ]
   }
 };
 
 const TELECOM_SERVICES = [
+  {
+    id: "svc-000",
+    name: "No active plan",
+    category: "Free",
+    price: 0,
+    speed: "-",
+    data: "-",
+    features: ["Pa pagesë", "Akses bazë në platformë", "Zgjidh një paketë kur të jesh gati"]
+  },
   {
     id: "svc-001",
     name: "Internet Unlimited 300 Mbps",
@@ -284,8 +347,6 @@ const PROTECTED_PAGES = [
 const ADMIN_ONLY_PAGES = ["admin.html"];
 const GUEST_ONLY_PAGES = ["login.html", "register.html", "forgot-password.html", "reset-password.html"];
 
-let storeMap;
-let storeMarkers = [];
 let currentSupportChannel = "employee";
 let currentManagedUserEmail = null;
 let adminCustomerModalInstance = null;
@@ -1126,103 +1187,9 @@ function initForms() {
   if (!registerForm) return;
 
   const registerError = document.getElementById("registerErrorMessage");
-  const servicePlanSelect = document.getElementById("servicePlan");
-  const registerPaymentSection = document.getElementById("registerPaymentSection");
-  const registerPaymentMethod = document.getElementById("registerPaymentMethod");
-
-  const registerCardHolder = document.getElementById("registerCardHolder");
-  const registerCardNumber = document.getElementById("registerCardNumber");
-  const registerExpiryDate = document.getElementById("registerExpiryDate");
-  const registerCvv = document.getElementById("registerCvv");
-  const registerPaypalEmail = document.getElementById("registerPaypalEmail");
-  const registerBankName = document.getElementById("registerBankName");
-  const registerBankIban = document.getElementById("registerBankIban");
-
-  attachInputFormatter(registerCardNumber, formatCardNumberInput);
-  attachInputFormatter(registerExpiryDate, formatExpiryInput);
-  attachInputFormatter(registerCvv, value => normalizeDigits(value).slice(0, 4));
-  bindCardCvvBehavior(registerCardNumber, registerCvv);
-  attachInputFormatter(registerBankIban, formatIbanInput);
-
-  const syncRegisterMethodFields = togglePaymentFields({
-    methodSelectId: "registerPaymentMethod",
-    cardSectionId: "registerCardPaymentFields",
-    paypalSectionId: "registerPaypalPaymentFields",
-    bankSectionId: "registerBankTransferFields",
-    cardFieldIds: ["registerCardHolder", "registerCardNumber", "registerExpiryDate", "registerCvv"],
-    paypalFieldIds: ["registerPaypalEmail"],
-    bankFieldIds: ["registerBankName", "registerBankIban"]
-  });
-
-  const registerPaymentInputs = [
-    registerPaymentMethod,
-    registerCardHolder,
-    registerCardNumber,
-    registerExpiryDate,
-    registerCvv,
-    registerPaypalEmail,
-    registerBankName,
-    registerBankIban
-  ].filter(Boolean);
-
-  function resetRegisterPaymentInputs() {
-    registerPaymentInputs.forEach(field => {
-      if (field.tagName === "SELECT") {
-        field.value = "";
-      } else {
-        field.value = "";
-      }
-      setFieldError(field, "");
-      field.classList.remove("is-invalid", "is-valid-field");
-    });
-    syncRegisterMethodFields();
-  }
-
-  function setRegisterPlanSummary(service) {
-    setText("registerSelectedPlanName", service?.name || "-");
-    setText("registerSelectedPlanMeta", service ? `${service.category} • ${service.speed} • ${service.data}` : "-");
-    setText("registerSelectedPlanAmount", service ? formatAmount(service.price) : "0 ALL");
-  }
-
-  let lastRegisterPlan = servicePlanSelect?.value || "";
-
-  function updateRegisterPaymentUI({ resetInputs = false } = {}) {
-    const selectedPlan = servicePlanSelect?.value || "";
-    const selectedService = TELECOM_SERVICES.find(item => item.name === selectedPlan) || null;
-
-    if (!registerPaymentSection || !registerPaymentMethod) return;
-
-    if (!selectedService) {
-      registerPaymentSection.style.display = "none";
-      registerPaymentMethod.disabled = true;
-      setRegisterPlanSummary(null);
-      resetRegisterPaymentInputs();
-      lastRegisterPlan = "";
-      return;
-    }
-
-    registerPaymentSection.style.display = "";
-    registerPaymentMethod.disabled = false;
-    setRegisterPlanSummary(selectedService);
-
-    if (resetInputs || selectedPlan !== lastRegisterPlan) {
-      resetRegisterPaymentInputs();
-    }
-
-    lastRegisterPlan = selectedPlan;
-  }
-
-  servicePlanSelect?.addEventListener("change", () => {
-    updateRegisterPaymentUI({ resetInputs: true });
-  });
-
-  updateRegisterPaymentUI();
 
   handleCustomValidation(registerForm, () => {
     const email = document.getElementById("registerEmail")?.value.trim().toLowerCase() || "";
-    const selectedPlan = servicePlanSelect?.value || "";
-    const selectedService = TELECOM_SERVICES.find(item => item.name === selectedPlan) || null;
-    const paymentMethod = registerPaymentMethod?.value || "";
 
     if (findUserByEmail(email)) {
       registerError?.classList.remove("d-none");
@@ -1231,24 +1198,7 @@ function initForms() {
 
     registerError?.classList.add("d-none");
 
-    if (!selectedService) {
-      setFieldError(servicePlanSelect, "Zgjidh një paketë të vlefshme.");
-      return;
-    }
-
-    updateRegisterPaymentUI();
-
-    if (!paymentMethod) {
-      setFieldError(registerPaymentMethod, "Zgjidh metodën e pagesës.");
-      return;
-    }
-
-    const visiblePaymentFields = registerPaymentInputs.filter(field => !field.disabled);
-    let paymentIsValid = true;
-    visiblePaymentFields.forEach(field => {
-      if (!validateField(field)) paymentIsValid = false;
-    });
-    if (!paymentIsValid) return;
+    const city = document.getElementById("registerCity")?.value || "";
 
     const users = getUsers();
     users.push({
@@ -1260,9 +1210,9 @@ function initForms() {
         firstName: normalizeTextSpaces(document.getElementById("firstName")?.value || ""),
         lastName: normalizeTextSpaces(document.getElementById("lastName")?.value || ""),
         phone: normalizePhoneStorage(document.getElementById("phoneNumber")?.value || ""),
-        address: "Adresa nuk është specifikuar",
-        plan: selectedService.name,
-        customerType: document.getElementById("customerType")?.value || "Individual"
+        address: city || "Adresa nuk është specifikuar",
+        plan: "No active plan",
+        customerType: "Individual"
       }
     });
     saveUsers(users);
@@ -1271,19 +1221,10 @@ function initForms() {
     const pad = value => String(value).padStart(2, "0");
     const currentDate = `${pad(now.getDate())}/${pad(now.getMonth() + 1)}/${now.getFullYear()}`;
 
-    telecomData.transactions.unshift({
-      id: `TRX-${now.getTime()}`,
-      date: currentDate,
-      method: paymentMethod,
-      amount: selectedService.price,
-      status: "Sukses",
-      userEmail: email
-    });
-
     telecomData.notifications.unshift({
       id: `NTF-${now.getTime()}`,
       title: "Regjistrimi u përfundua me sukses",
-      message: `Paketa ${selectedService.name} u aktivizua pas pagesës fillestare prej ${formatAmount(selectedService.price)}.`,
+      message: `Mirë se erdhe! Llogaria jote u krijua me sukses. Mund të zgjedhësh një paketë te seksioni Shërbimet.`,
       type: "service",
       date: currentDate,
       audience: "user",
@@ -1293,9 +1234,9 @@ function initForms() {
     persistTelecomData();
 
     if (window.toast) {
-      window.toast.show("Llogaria u krijua me sukses dhe pagesa u konfirmua!", "success");
+      window.toast.show("Llogaria u krijua me sukses!", "success");
     } else {
-      alert("Llogaria u krijua me sukses dhe pagesa u konfirmua.");
+      alert("Llogaria u krijua me sukses.");
     }
 
     window.location.href = "login.html";
@@ -1557,7 +1498,16 @@ function renderInvoiceDetails() {
   if (!user) return;
   const params = new URLSearchParams(window.location.search);
   const invoiceId = params.get("id");
-  const bill = getUserBills(user.email).find(item => item.id === invoiceId) || getUserBills(user.email)[0];
+
+  // Admin can see any bill, regular user only their own
+  let bill;
+  if (user.role === "admin") {
+    bill = telecomData.bills.find(item => item.id === invoiceId) || telecomData.bills[0];
+  } else {
+    const userBills = getUserBills(user.email);
+    bill = userBills.find(item => item.id === invoiceId) || userBills[0];
+  }
+
   if (!bill) return;
 
   setText("invoiceHeaderTitle", `Fatura ${bill.id}`);
@@ -1841,11 +1791,12 @@ function renderServices() {
 
   currentPlanCard.innerHTML = (() => {
     const current = TELECOM_SERVICES.find(item => item.name === user.profile.plan) || TELECOM_SERVICES[0];
+    const isFree = current.name === "No active plan";
     return `
       <div class="plan-card current-plan">
         <span class="notification-pill">${current.category}</span>
         <h4 class="mb-1">${current.name}</h4>
-        <div class="plan-price">${formatAmount(current.price)}</div>
+        <div class="plan-price">${isFree ? "Falas" : formatAmount(current.price)}</div>
         <div class="text-muted">${current.speed} • ${current.data}</div>
         <ul class="plan-features mt-2">
           ${current.features.map(feature => `<li>${feature}</li>`).join("")}
@@ -1854,22 +1805,25 @@ function renderServices() {
     `;
   })();
 
-  servicesGrid.innerHTML = TELECOM_SERVICES.map(item => `
+  servicesGrid.innerHTML = TELECOM_SERVICES.map(item => {
+    const isCurrentPlan = item.name === user.profile.plan;
+    const isFree = item.name === "No active plan";
+    return `
     <div class="col-md-6">
-      <div class="plan-card ${item.name === user.profile.plan ? "current-plan" : ""}">
+      <div class="plan-card ${isCurrentPlan ? "current-plan" : ""}">
         <span class="notification-pill">${item.category}</span>
         <h5 class="mb-1">${item.name}</h5>
-        <div class="plan-price">${formatAmount(item.price)}</div>
+        <div class="plan-price">${isFree ? "Falas" : formatAmount(item.price)}</div>
         <div class="text-muted">${item.speed} • ${item.data}</div>
         <ul class="plan-features">
           ${item.features.map(feature => `<li>${feature}</li>`).join("")}
         </ul>
-        <button class="btn ${item.name === user.profile.plan ? "btn-outline-primary" : "btn-primary"} mt-auto service-select-btn" data-plan="${item.name}" type="button" ${item.name === user.profile.plan ? "disabled" : ""}>
-          ${item.name === user.profile.plan ? "Plani Aktual" : "Zgjidh Paketën"}
+        <button class="btn ${isCurrentPlan ? "btn-outline-primary" : "btn-primary"} mt-auto service-select-btn" data-plan="${item.name}" data-free="${isFree}" type="button" ${isCurrentPlan ? "disabled" : ""}>
+          ${isCurrentPlan ? "Plani Aktual" : isFree ? "Hiq Planin Aktiv" : "Zgjidh Paketën"}
         </button>
       </div>
     </div>
-  `).join("");
+  `}).join("");
 
   const serviceCardNumber = document.getElementById("serviceCardNumber");
   const serviceExpiryDate = document.getElementById("serviceExpiryDate");
@@ -1910,7 +1864,40 @@ function renderServices() {
   document.querySelectorAll(".service-select-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       const selectedPlan = btn.dataset.plan;
+      const isFree = btn.dataset.free === "true";
       if (!selectedPlan || selectedPlan === user.profile.plan) return;
+
+      if (isFree) {
+        // Show confirmation dialog for removing plan
+        const confirmModal = document.getElementById("serviceConfirmFreePlanModal");
+        if (confirmModal) {
+          confirmModal.classList.add("active");
+          document.getElementById("confirmFreePlanYes")?.addEventListener("click", () => {
+            confirmModal.classList.remove("active");
+            updateUser(user.email, { profile: { plan: "No active plan" } });
+            telecomData.notifications.unshift({
+              id: `NTF-${Date.now()}`,
+              title: "Plani u hoq",
+              message: "Plani aktiv u hoq me sukses. Mund të zgjedhësh një paketë të re kur të jesh gati.",
+              type: "service",
+              date: new Date().toLocaleDateString("sq-AL"),
+              audience: "user",
+              userEmail: user.email
+            });
+            persistTelecomData();
+            if (window.toast) window.toast.show("Plani u hoq me sukses.", "success");
+            renderServices();
+          }, { once: true });
+          document.getElementById("confirmFreePlanNo")?.addEventListener("click", () => {
+            confirmModal.classList.remove("active");
+          }, { once: true });
+          confirmModal.addEventListener("click", e => {
+            if (e.target === confirmModal) confirmModal.classList.remove("active");
+          }, { once: true });
+        }
+        return;
+      }
+
       populateServiceModal(selectedPlan);
     });
   });
@@ -2330,60 +2317,38 @@ function initAdminActions() {
   }
 }
 
-function renderStoreList(cityName) {
-  const list = document.getElementById("storeList");
-  if (!list) return;
+function buildCityEmbedUrl(cityName) {
   const cityData = telecomStoreData[cityName];
-  if (!cityData) return;
-
-  list.innerHTML = cityData.stores.map(store => `
-    <div class="store-item">
-      <h6>${store.name}</h6>
-      <p>${store.address}</p>
-      <a href="https://www.google.com/maps?q=${store.lat},${store.lng}" target="_blank" rel="noopener noreferrer">Hape në Google Maps</a>
-    </div>
-  `).join("");
+  const cityQuery = cityData?.cityMapQuery || cityName;
+  return `https://maps.google.com/maps?hl=sq&q=${encodeURIComponent(cityQuery)}&z=13&output=embed`;
 }
 
-function clearStoreMarkers() {
-  storeMarkers.forEach(marker => marker.remove());
-  storeMarkers = [];
-}
-
-function showCityStores(cityName) {
+function showCityOnMap(cityName) {
+  const mapFrame = document.getElementById("storeMapFrame");
   const cityData = telecomStoreData[cityName];
-  if (!cityData || !storeMap || !window.L) return;
+  if (!mapFrame || !cityData) return;
 
-  storeMap.setView(cityData.center, cityData.zoom);
-  clearStoreMarkers();
+  mapFrame.src = buildCityEmbedUrl(cityName);
+  mapFrame.title = `Dyqanet Telecom Albania në ${cityName}`;
 
-  cityData.stores.forEach(store => {
-    const marker = L.marker([store.lat, store.lng]).addTo(storeMap);
-    marker.bindPopup(`<strong>${store.name}</strong><br>${store.address}`);
-    storeMarkers.push(marker);
-  });
-
-  renderStoreList(cityName);
   document.querySelectorAll(".city-btn").forEach(btn => {
     btn.classList.toggle("active", btn.dataset.city === cityName);
   });
 }
 
 function initStoreMap() {
-  const mapElement = document.getElementById("storeMap");
-  if (!mapElement || !window.L) return;
-  storeMap = L.map("storeMap").setView([41.3275, 19.8187], 7);
+  const mapFrame = document.getElementById("storeMapFrame");
+  if (!mapFrame) return;
 
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution: "&copy; OpenStreetMap contributors" }).addTo(storeMap);
   document.querySelectorAll(".city-btn").forEach(btn => {
-    btn.addEventListener("click", () => showCityStores(btn.dataset.city));
+    btn.addEventListener("click", () => showCityOnMap(btn.dataset.city));
   });
 
-  showCityStores("Tirane");
-  setTimeout(() => storeMap.invalidateSize(), 200);
+  showCityOnMap("Tirane");
 }
 
 function cleanupStaleModalState() {
+
   if (document.querySelector(".modal.show")) return;
   document.body.classList.remove("modal-open");
   document.body.style.removeProperty("padding-right");
@@ -2427,7 +2392,7 @@ function getAIReply(message) {
   if (lower.includes("pages") || lower.includes("kart")) return "Për të kryer pagesë, hap faqen 'Pagesat', zgjidh faturën dhe plotëso të dhënat e nevojshme. Sigurohu që të gjitha fushat të jenë plotësuar saktë.";
   if (lower.includes("transaksion")) return "Historikun e transaksioneve mund ta gjesh te faqja 'Transaksionet', ku mund të kërkosh sipas ID-së ose statusit.";
   if (lower.includes("profil") || lower.includes("email") || lower.includes("telefon")) return "Të dhënat e profilit mund t’i ndryshosh te faqja 'Profili'. Pas ruajtjes së ndryshimeve, ndërfaqja përditësohet automatikisht.";
-  if (lower.includes("dyqan") || lower.includes("qytet") || lower.includes("maps")) return "Në faqen kryesore mund të zgjedhësh qytetin dhe të shohësh pikat e dyqaneve në hartë. Çdo dyqan ka edhe link për hapje në Google Maps.";
+  if (lower.includes("dyqan") || lower.includes("qytet") || lower.includes("maps")) return "Në faqen kryesore mund të zgjedhësh qytetin dhe të shohësh pikat e dyqaneve direkt në hartë.";
   if (lower.includes("paket")) return "Faqja 'Shërbimet' të lejon të krahasosh paketat dhe të zgjedhësh një plan tjetër.";
   return "Mund të të ndihmoj për faturat, pagesat, transaksionet, profilin, paketat ose dyqanet. Shkruaj pyetjen më konkretisht.";
 }
@@ -2443,7 +2408,7 @@ function loadSupportIntro(channel) {
     `;
   } else {
     chatMessages.innerHTML = `
-      ${createChatMessage("bot", "AI Chatbot", "Përshëndetje! Unë jam AI Chatbot i platformës TeleCom Plus.")}
+      ${createChatMessage("bot", "AI Chatbot", "Përshëndetje! Unë jam AI Chatbot i platformës Telecom Albania.")}
       ${createChatMessage("bot", "AI Chatbot", "Mund të të ndihmoj me pyetje rreth faturave, pagesave, profilit, transaksioneve dhe pikave të dyqaneve.")}
     `;
   }

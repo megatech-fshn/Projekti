@@ -19,11 +19,11 @@
   --danger:   #f87171;
 
   /* Dark palette */
-  --bg:        #060d1a;
-  --bg-raised: #0c1628;
-  --bg-card:   #0f1e35;
-  --bg-hover:  #162540;
-  --bg-input:  #0a1525;
+  --bg:        #0a071f;
+  --bg-raised: #110e30;
+  --bg-card:   #160f3e;
+  --bg-hover:  #1d1450;
+  --bg-input:  #0d0b27;
 
   /* Text – dark */
   --tx-1: #f0f6ff;
@@ -31,13 +31,13 @@
   --tx-3: #566e8a;
 
   /* Borders – dark */
-  --bd:       rgba(148,163,184,0.1);
-  --bd-focus: rgba(129,140,248,0.5);
-  --bd-hi:    rgba(129,140,248,0.28);
+  --bd:       rgba(148,140,200,0.12);
+  --bd-focus: rgba(149,120,255,0.5);
+  --bd-hi:    rgba(149,120,255,0.28);
 
   /* Shadows */
-  --shadow-card: 0 0 0 1px var(--bd), 0 20px 60px rgba(0,0,0,0.6);
-  --shadow-glow: 0 0 28px rgba(99,102,241,0.25);
+  --shadow-card: 0 0 0 1px var(--bd), 0 20px 60px rgba(10,0,30,0.65);
+  --shadow-glow: 0 0 28px rgba(120,80,255,0.22);
 
   /* Radii */
   --r-xl: 20px;
@@ -65,8 +65,17 @@ body {
 body::before {
   content: '';
   position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background-image: radial-gradient(rgba(129,140,248,0.08) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(149,120,255,0.07) 1px, transparent 1px);
   background-size: 32px 32px;
+}
+
+/* Very faint purple ambient wash */
+body::after {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(120,60,220,0.26) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(100,40,200,0.18) 0%, transparent 60%);
 }
 
 body > * { position: relative; z-index: 1; }
@@ -133,9 +142,6 @@ body[data-theme="light"] .custom-table td { color: var(--tx-2); border-bottom-co
 body[data-theme="light"] .custom-table td:first-child { color: var(--tx-1); }
 body[data-theme="light"] .custom-table tbody tr:hover td { background-color: var(--bg-hover) !important; }
 
-body[data-theme="light"] .leaflet-container { background: #e2e8f0; }
-body[data-theme="light"] .leaflet-popup-content-wrapper { background: #fff; color: #0f1f3a; }
-body[data-theme="light"] .leaflet-popup-tip { background: #fff; }
 
 body[data-theme="light"] .donut-visual::after { background: var(--bg-card); }
 body[data-theme="light"] .modal-content.custom-modal { background: #fff; }
@@ -623,7 +629,7 @@ textarea.form-control { background: var(--bg-input); color: var(--tx-1); resize:
 /* ─────────────────────────────────────────────────────────
    DASHBOARD MAIN / TOPBAR
 ───────────────────────────────────────────────────────── */
-.dashboard-main { padding: 22px; overflow-x: hidden; }
+.dashboard-main { padding: 22px; overflow-x: hidden; position: relative; }
 
 .topbar {
   background: var(--bg-raised);
@@ -757,9 +763,11 @@ textarea.form-control { background: var(--bg-input); color: var(--tx-1); resize:
 /* Custom simple modal overlay — bypasses Bootstrap JS modal issues */
 .simple-modal-overlay {
   display: none;
-  position: fixed; inset: 0; z-index: 1055;
+  position: absolute; top: 0; left: 0; width: 100%; min-height: 100%;
+  z-index: 1055;
   background: rgba(0,0,0,0.75);
-  align-items: center; justify-content: center;
+  align-items: flex-start; justify-content: center;
+  padding-top: 60px;
 }
 .simple-modal-overlay.active { display: flex; }
 .simple-modal-box {
@@ -823,29 +831,29 @@ textarea.form-control { background: var(--bg-input); color: var(--tx-1); resize:
 .city-btn:hover { border-color: var(--bd-hi); color: var(--tx-1); background: var(--bg-hover); }
 .city-btn.active { background: var(--indigo-deep); color: #fff; border-color: var(--indigo-deep); box-shadow: 0 0 20px rgba(99,102,241,0.3); }
 
-.store-map-wrapper, .store-list-card {
-  background: var(--bg-raised); border: 1px solid var(--bd);
-  border-radius: var(--r-xl); box-shadow: var(--shadow-card);
-  padding: 18px; height: 100%;
+.store-map-shell {
+  max-width: 760px;
+  margin: 0 auto;
 }
 
-#storeMap { width: 100%; height: 460px; border-radius: var(--r-lg); overflow: hidden; }
-.leaflet-tile { filter: none; }
-.leaflet-container { background: var(--bg-raised); }
-.leaflet-popup-content-wrapper { background: var(--bg-card); color: var(--tx-1); border: 1px solid var(--bd); border-radius: var(--r-md); }
-.leaflet-popup-tip { background: var(--bg-card); }
-.store-list-card h5 { color: var(--tx-1); margin-bottom: 12px; }
-.store-list { display: grid; gap: 10px; }
-
-.store-item {
-  padding: 13px 15px; border: 1px solid var(--bd);
-  border-radius: var(--r-md); background: var(--bg-hover); transition: border-color .2s;
+.store-map-wrapper {
+  background: var(--bg-raised);
+  border: 1px solid var(--bd);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-card);
+  padding: 18px;
+  aspect-ratio: 1 / 1;
 }
 
-.store-item:hover { border-color: var(--bd-hi); }
-.store-item h6 { color: var(--tx-1); margin: 0 0 4px; font-size: 0.84rem; }
-.store-item p  { color: var(--tx-2); margin: 0 0 8px; font-size: 0.79rem; }
-.store-item a  { color: var(--indigo); font-weight: 600; font-size: 0.79rem; }
+#storeMapFrame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  display: block;
+  background: var(--bg-hover);
+}
 
 /* ─────────────────────────────────────────────────────────
    CUSTOMER SERVICE / CHAT
@@ -1087,7 +1095,7 @@ textarea.form-control { background: var(--bg-input); color: var(--tx-1); resize:
   .auth-card { padding: 28px 20px; }
   .stats-grid { grid-template-columns: 1fr; }
   .hero-bill-item, .summary-row, .info-panel-item { flex-direction: column; align-items: flex-start; }
-  #storeMap { height: 300px; }
+  .store-map-shell { max-width: 100%; }
   .city-grid { justify-content: flex-start; }
   .chat-card { min-height: 480px; }
   .chat-message { max-width: 92%; }
@@ -1166,4 +1174,126 @@ body[data-theme="light"] .input-group .btn {
 body[data-theme="light"] .input-group .btn:hover {
   background: #f1f5f9 !important;
   color: #0f1f3a !important;
+}
+
+/* ─────────────────────────────────────────────────────────
+   PURPLE ACCENTS — subtle throughout the UI
+───────────────────────────────────────────────────────── */
+
+/* Cards get a faint purple left border on hover */
+.dashboard-card {
+  border-left: 2px solid transparent;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.dashboard-card:hover {
+  border-left-color: rgba(129,140,248,0.35);
+  box-shadow: var(--shadow-card), 0 0 0 1px rgba(129,140,248,0.08);
+}
+
+/* Sidebar active link gets a subtle purple glow dot */
+.sidebar-nav a.active::before {
+  content: '';
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--indigo);
+  box-shadow: 0 0 8px rgba(129,140,248,0.7);
+  flex-shrink: 0;
+}
+
+/* Topbar gets a faint purple bottom border */
+.topbar {
+  border-bottom: 1px solid rgba(129,140,248,0.12);
+}
+
+/* Buttons get a purple glow on focus */
+.btn-primary:focus-visible,
+.btn-primary:hover {
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.22), 0 4px 16px rgba(99,102,241,0.18);
+}
+
+/* Table header row gets a very faint purple tint */
+.custom-table thead th {
+  background: rgba(129,140,248,0.05);
+  border-bottom-color: rgba(129,140,248,0.15);
+}
+
+/* Status badges get a purple border on the info type */
+.notification-pill {
+  border: 1px solid rgba(129,140,248,0.2);
+  background: rgba(129,140,248,0.1);
+}
+
+/* Info panel items get a subtle purple accent on hover */
+.info-panel-item:hover {
+  background: rgba(129,140,248,0.04);
+}
+
+/* Plan cards get a purple glow on hover */
+.plan-card:hover {
+  border-color: rgba(129,140,248,0.3);
+  box-shadow: 0 0 0 1px rgba(129,140,248,0.12), 0 8px 32px rgba(10,0,30,0.5);
+}
+.plan-card.current-plan {
+  border-color: rgba(129,140,248,0.4);
+  background: linear-gradient(135deg, rgba(99,102,241,0.07) 0%, transparent 60%);
+}
+
+/* Auth card gets a subtle purple border glow */
+.auth-card {
+  border: 1px solid rgba(129,140,248,0.18);
+  box-shadow: 0 0 0 1px rgba(129,140,248,0.06), 0 24px 64px rgba(10,0,30,0.7);
+}
+
+/* Timeline/notification cards */
+.timeline-card {
+  border-left: 2px solid rgba(129,140,248,0.12);
+}
+.timeline-card:hover {
+  border-left-color: rgba(129,140,248,0.35);
+  background: rgba(129,140,248,0.03);
+}
+
+/* Modal box purple accent */
+.simple-modal-box {
+  border-color: rgba(129,140,248,0.28);
+  box-shadow: 0 0 0 1px rgba(129,140,248,0.1), 0 40px 80px rgba(0,0,0,0.7), 0 0 40px rgba(99,102,241,0.08);
+}
+
+/* Form controls - subtle purple focus ring accent */
+.form-control:focus,
+.form-select:focus {
+  border-color: rgba(129,140,248,0.5) !important;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.14) !important;
+}
+
+/* Section dividers in cards */
+.card-header-inline {
+  border-bottom: 1px solid rgba(129,140,248,0.1);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+/* Stat cards */
+.stat-card {
+  border-left: 3px solid rgba(129,140,248,0.3);
+}
+
+/* Hero section accent */
+.hero-bill-item:hover {
+  background: rgba(129,140,248,0.06);
+  border-color: rgba(129,140,248,0.2);
+}
+
+/* Light mode purple accents */
+body[data-theme="light"] .dashboard-card:hover {
+  border-left-color: rgba(99,102,241,0.25);
+}
+body[data-theme="light"] .plan-card.current-plan {
+  background: linear-gradient(135deg, rgba(99,102,241,0.05) 0%, transparent 60%);
+}
+body[data-theme="light"] .notification-pill {
+  background: rgba(99,102,241,0.08);
+  border-color: rgba(99,102,241,0.18);
+}
+body[data-theme="light"] .custom-table thead th {
+  background: rgba(99,102,241,0.04);
 }
