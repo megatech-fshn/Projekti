@@ -81,7 +81,7 @@ const telecomStoreData = {
     ]
   },
   Vlore: {
-    cityMapQuery: "ONE Albania stores in Vlore, Albania",
+    cityMapQuery: "ONE Albania Vlore Albania&ll=40.4664,19.4897",
     stores: [
       {
         name: "Telecom Albania - Bulevardi Skele",
