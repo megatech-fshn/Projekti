@@ -763,7 +763,7 @@ textarea.form-control { background: var(--bg-input); color: var(--tx-1); resize:
 /* Custom simple modal overlay — bypasses Bootstrap JS modal issues */
 .simple-modal-overlay {
   display: none;
-  position: absolute; top: 0; left: 0; width: 100%; min-height: 100%;
+  position: fixed; top: 0; left: 0; width: 100%; min-height: 100%;
   z-index: 1055;
   background: rgba(0,0,0,0.75);
   align-items: flex-start; justify-content: center;
@@ -942,7 +942,7 @@ textarea.form-control { background: var(--bg-input); color: var(--tx-1); resize:
 .chart-value { font-size: 0.76rem; color: var(--tx-2); font-family: var(--font-mono); text-align: right; }
 
 .donut-legend-wrapper { display: grid; gap: 18px; }
-.donut-visual { width: 150px; height: 150px; margin: 0 auto; border-radius: 50%; background: conic-gradient(var(--success) 0 45%, var(--warning) 45% 70%, var(--danger) 70% 100%); position: relative; }
+.donut-visual { width: 150px; height: 150px; margin: 0 auto; border-radius: 50%; position: relative; }
 .donut-visual::after { content: ''; position: absolute; inset: 28px; background: var(--bg-card); border-radius: 50%; }
 .donut-legend { display: grid; gap: 9px; padding: 14px 16px; border-radius: var(--r-lg); border: 1px solid var(--bd); background: var(--bg-raised); }
 .legend-item { display: flex; justify-content: space-between; align-items: center; font-size: 0.84rem; }
@@ -1296,4 +1296,8 @@ body[data-theme="light"] .notification-pill {
 }
 body[data-theme="light"] .custom-table thead th {
   background: rgba(99,102,241,0.04);
+}
+
+#newPasswordProfile::placeholder {
+  font-size: 0.72rem;
 }

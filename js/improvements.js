@@ -354,7 +354,9 @@ function initEnhancedValidation() {
           isValid = false;
         }
 
-        field.classList.toggle('is-valid-field', isValid);
+        if (['loginEmail', 'loginPassword'].includes(field.id)) isValid = false;
+
+         field.classList.toggle('is-valid-field', isValid);
       };
 
       field.addEventListener('blur', syncFieldState);
@@ -653,9 +655,6 @@ function initNotificationBadge() {
       dot = document.createElement('span');
       dot.id = 'notifBadgeDot';
       dot.style.cssText = 'display:none;width:7px;height:7px;background:#f87171;border-radius:50%;margin-left:auto;flex-shrink:0;animation:pulse-dot 2s infinite';
-      notifLink.style.display = 'flex';
-      notifLink.style.alignItems = 'center';
-      notifLink.style.justifyContent = 'space-between';
       notifLink.appendChild(dot);
     }
 

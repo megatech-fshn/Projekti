@@ -247,7 +247,7 @@ const DEFAULT_TELECOM_DATA = {
   transactions: [
     { id: "TRX-2026-1001", date: "05/04/2026", method: "Kartë Debiti", amount: 2700, status: "Sukses", userEmail: "arber.kola@telecomplus.al" },
     { id: "TRX-2026-1002", date: "21/03/2026", method: "Kartë Krediti", amount: 1800, status: "Sukses", userEmail: "arber.kola@telecomplus.al" },
-    { id: "TRX-2026-1003", date: "28/02/2026", method: "Transfer Bankar", amount: 2500, status: "Në proces", userEmail: "arber.kola@telecomplus.al" },
+    { id: "TRX-2026-1003", date: "28/02/2026", method: "Transfertë Bankare", amount: 2500, status: "Në proces", userEmail: "arber.kola@telecomplus.al" },
     { id: "TRX-2026-1004", date: "15/02/2026", method: "Kartë Debiti", amount: 1700, status: "Dështuar", userEmail: "arber.kola@telecomplus.al" }
   ],
   notifications: [
@@ -899,7 +899,7 @@ function isPayPalMethod(method) {
 }
 
 function isBankTransferMethod(method) {
-  return method === "Transfer Bankar";
+  return method === "Transfertë Bankare";
 }
 
 function getCardBrand(cardNumber) {
@@ -1386,19 +1386,41 @@ function renderMonthlyPaymentsChart(transactions) {
   const container = document.getElementById("monthlyPaymentsChart");
   if (!container) return;
 
-  const monthly = [
-    { label: "Jan", value: 900 },
-    { label: "Shk", value: 1700 },
-    { label: "Mar", value: 1800 },
-    { label: "Pri", value: transactions.filter(item => item.status === "Sukses").reduce((sum, item) => sum + item.amount, 0) || 2700 }
-  ];
+  const MONTH_LABELS = ["Jan", "Shk", "Mar", "Pri", "Maj", "Qer", "Kor", "Gus", "Sht", "Tet", "Nën", "Dhj"];
+
+  const monthTotals = {};
+  transactions.filter(t => t.status === "Sukses").forEach(t => {
+    const parts = (t.date || "").split("/");
+    if (parts.length < 3) return;
+    const month = parseInt(parts[1], 10) - 1;
+    const year = parseInt(parts[2], 10);
+    const key = `${year}-${month}`;
+    monthTotals[key] = (monthTotals[key] || { month, year, value: 0 });
+    monthTotals[key].value += Number(t.amount || 0);
+  });
+
+  const now = new Date();
+  const monthly = [];
+  for (let i = 3; i >= 0; i--) {
+    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+    const month = d.getMonth();
+    const year = d.getFullYear();
+    const key = `${year}-${month}`;
+    monthly.push({ label: MONTH_LABELS[month], value: monthTotals[key]?.value || 0 });
+  }
 
   const max = Math.max(...monthly.map(item => item.value), 1);
+
+  if (monthly.every(item => item.value === 0)) {
+    container.innerHTML = `<p class="text-muted" style="font-size:0.82rem;text-align:center;padding:20px 0">Nuk ka transaksione të suksesshme për t'u shfaqur.</p>`;
+    return;
+  }
+
   container.innerHTML = monthly.map(item => `
     <div class="simple-chart-row">
       <span class="chart-label">${item.label}</span>
       <div class="chart-track"><div class="chart-bar" style="width:${(item.value / max) * 100}%"></div></div>
-      <span class="chart-value">${item.value}</span>
+      <span class="chart-value">${item.value > 0 ? item.value.toLocaleString("sq-AL") : "-"}</span>
     </div>
   `).join("");
 }
@@ -1410,9 +1432,21 @@ function renderBillStatusChart(bills) {
   const paid = bills.filter(item => item.status === "Paguar").length;
   const unpaid = bills.filter(item => item.status === "Papaguar").length;
   const overdue = bills.filter(item => item.status === "Vonuar").length;
+  const total = paid + unpaid + overdue;
+
+  let donutStyle;
+  if (total === 0) {
+    donutStyle = "background: var(--bd);";
+  } else {
+    const paidPct = (paid / total) * 100;
+    const unpaidPct = (unpaid / total) * 100;
+    const p1 = paidPct.toFixed(1);
+    const p2 = (paidPct + unpaidPct).toFixed(1);
+    donutStyle = `background: conic-gradient(#16a34a 0 ${p1}%, #d97706 ${p1}% ${p2}%, #dc2626 ${p2}% 100%);`;
+  }
 
   container.innerHTML = `
-    <div class="donut-visual"></div>
+    <div class="donut-visual" style="${donutStyle}"></div>
     <div class="donut-legend">
       <div class="legend-item"><span class="legend-label"><span class="legend-dot" style="background:#16a34a"></span>Paguar</span><strong>${paid}</strong></div>
       <div class="legend-item"><span class="legend-label"><span class="legend-dot" style="background:#d97706"></span>Papaguar</span><strong>${unpaid}</strong></div>
@@ -1420,6 +1454,7 @@ function renderBillStatusChart(bills) {
     </div>
   `;
 }
+
 
 function initDashboardQuickSearch() {
   const input = document.getElementById("dashboardQuickSearch");
@@ -1594,7 +1629,7 @@ function renderPaymentPage() {
 
     setText("paymentAmount", bill ? formatAmount(bill.amount) : "0 ALL");
     setText("paymentService", bill ? bill.service : "-");
-    setText("paymentStatus", bill ? bill.status : "Papaguar");
+    setText("paymentStatus", bill ? bill.status : "-");
   }
 
   billSelect.addEventListener("change", updateSummary);
