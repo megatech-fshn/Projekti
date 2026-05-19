@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Telecom Albania | Admin</title>
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/improvements.css" />
+  <link rel="stylesheet" href="css/visual-upgrade.css" />
+</head>
+<body class="dashboard-body">
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div>
+        <a href="index.html" class="brand-link sidebar-brand" aria-label="TeleCom home"><img src="assets/logo-telecom.png" alt="TeleCom" class="brand-logo" /></a>
+        <div class="sidebar-user-info" id="sidebarUserInfo" style="margin-top:12px;padding:10px 12px;background:rgba(120,80,255,0.12);border-radius:10px;border:1px solid rgba(120,80,255,0.22)">
+          <div style="font-size:0.72rem;color:var(--tx-3);margin-bottom:2px">I kyçur si</div>
+          <div id="sidebarUserName" style="font-size:0.84rem;font-weight:600;color:var(--tx-1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">—</div>
+          <div id="sidebarUserRole" style="font-size:0.7rem;color:var(--indigo);margin-top:1px">—</div>
+        </div>
+        <nav class="sidebar-nav mt-4">
+          <a data-icon="⬡" href="dashboard.html">Dashboard</a>
+          <a data-icon="◈" href="bills.html">Faturat</a>
+          <a data-icon="◇" href="payments.html">Pagesat</a>
+          <a data-icon="⇄" href="transactions.html">Transaksionet</a>
+          <a data-icon="◉" href="notifications.html">Njoftime</a>
+          <a data-icon="▣" href="services.html">Shërbimet</a>
+          <a data-icon="○" href="profile.html">Profili</a>
+          <a data-icon="◎" href="customer-service.html">Customer Service</a>
+          <a data-icon="◆" class="active" href="admin.html">Admin</a>
+        </nav>
+      </div>
+      <div class="sidebar-footer">
+        <a href="index.html" class="btn btn-outline-light w-100 mb-2">Kthehu në homepage</a>
+        <button type="button" class="btn btn-outline-danger w-100" id="sidebarSignOutBtn" hidden>⏻ Sign Out</button>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+
+<div class="topbar">
+  <div>
+    <h2 class="mb-1">Admin Dashboard</h2>
+    <p class="text-muted mb-0">Përmbledhje e klientëve, faturave dhe aktivitetit të sistemit.</p>
+  </div>
+  <div class="topbar-actions">
+    <input type="text" id="adminCustomerSearch" class="form-control compact-input" placeholder="Kërko klient..." />
+    <button class="btn btn-outline-primary" id="adminBroadcastBtn" type="button">Dërgo Njoftim</button>
+  </div>
+</div>
+
+<section class="stats-grid">
+  <div class="dashboard-card stat-card">
+    <span class="stat-label">Klientë Aktivë</span>
+    <h3 id="adminCustomers">0</h3>
+  </div>
+  <div class="dashboard-card stat-card">
+    <span class="stat-label">Fatura të Hapura</span>
+    <h3 id="adminOpenBills">0</h3>
+  </div>
+  <div class="dashboard-card stat-card">
+    <span class="stat-label">Të Ardhura Mujore</span>
+    <h3 id="adminMonthlyRevenue">0 ALL</h3>
+  </div>
+  <div class="dashboard-card stat-card">
+    <span class="stat-label">Pagesa Sot</span>
+    <h3 id="adminPaymentsToday">0</h3>
+  </div>
+</section>
+
+<section class="row g-4 mt-1">
+  <div class="col-lg-7">
+    <div class="dashboard-card h-100">
+      <div class="card-header-inline">
+        <h5 class="mb-0">Menaxho Klientët</h5>
+      </div>
+      <div class="table-responsive mt-3">
+        <table class="table custom-table align-middle">
+          <thead>
+            <tr>
+              <th>Emri</th>
+              <th>Email</th>
+              <th>Paketa</th>
+              <th>Statusi</th>
+              <th>Veprime</th>
+            </tr>
+          </thead>
+          <tbody id="adminCustomersTable"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-5">
+    <div class="dashboard-card h-100">
+      <div class="card-header-inline">
+        <h5 class="mb-0">Detyrimet Aktive</h5>
+      </div>
+      <div class="table-responsive mt-3">
+        <table class="table custom-table align-middle">
+          <thead>
+            <tr>
+              <th>Fatura</th>
+              <th>Klienti</th>
+              <th>Shuma</th>
+            </tr>
+          </thead>
+          <tbody id="adminBillsTable"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="simple-modal-overlay" id="adminCustomerModal">
+  <div class="simple-modal-box">
+    <div class="p-4">
+      <div class="card-header-inline mb-3">
+        <h5 class="mb-0">Njofto Klientin</h5>
+        <button type="button" class="btn-close" id="closeAdminCustomerModal"></button>
+      </div>
+      <div id="adminCustomerMeta" class="small text-muted mb-3"></div>
+
+      <div class="mb-3">
+        <label for="adminCustomerNote" class="form-label">Njoftimi</label>
+        <textarea id="adminCustomerNote" class="form-control" rows="3" placeholder="Shkruaj njoftimin që do të dërgohet..."></textarea>
+        <small class="error-message"></small>
+      </div>
+
+      <div class="d-flex gap-2 justify-content-end">
+        <button class="btn btn-outline-secondary" id="cancelAdminCustomerModal" type="button">Mbyll</button>
+        <button class="btn btn-primary" id="saveAdminCustomerBtn" type="button">Dërgo Njoftimin</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="simple-modal-overlay" id="broadcastModal">
+  <div class="simple-modal-box">
+    <div class="p-4">
+      <div class="card-header-inline mb-3">
+        <h5 class="mb-0">Njoftim për të gjithë klientët</h5>
+        <button type="button" class="btn-close" id="closeBroadcastModal"></button>
+      </div>
+      <div class="mb-3">
+        <label for="broadcastTitle" class="form-label">Titulli</label>
+        <input id="broadcastTitle" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="broadcastMessage" class="form-label">Mesazhi</label>
+        <textarea id="broadcastMessage" class="form-control" rows="3"></textarea>
+      </div>
+      <div class="d-flex gap-2 justify-content-end">
+        <button class="btn btn-outline-secondary" id="cancelBroadcastModal" type="button">Mbyll</button>
+        <button class="btn btn-primary" id="sendBroadcastBtn" type="button">Dërgo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/improvements.js"></script>
+  <script src="js/visual-upgrade.js"></script>
+</body>
+</html>
+

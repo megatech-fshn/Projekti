@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Telecom Albania | Shërbimet</title>
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/improvements.css" />
+  <link rel="stylesheet" href="css/visual-upgrade.css" />
+</head>
+<body class="dashboard-body">
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div>
+        <a href="index.html" class="brand-link sidebar-brand" aria-label="TeleCom home"><img src="assets/logo-telecom.png" alt="TeleCom" class="brand-logo" /></a>
+        <div class="sidebar-user-info" id="sidebarUserInfo" style="margin-top:12px;padding:10px 12px;background:rgba(120,80,255,0.12);border-radius:10px;border:1px solid rgba(120,80,255,0.22)">
+          <div style="font-size:0.72rem;color:var(--tx-3);margin-bottom:2px">I kyçur si</div>
+          <div id="sidebarUserName" style="font-size:0.84rem;font-weight:600;color:var(--tx-1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">—</div>
+          <div id="sidebarUserRole" style="font-size:0.7rem;color:var(--indigo);margin-top:1px">—</div>
+        </div>
+        <nav class="sidebar-nav mt-4">
+          <a data-icon="⬡" href="dashboard.html">Dashboard</a>
+          <a data-icon="◈" href="bills.html">Faturat</a>
+          <a data-icon="◇" href="payments.html">Pagesat</a>
+          <a data-icon="⇄" href="transactions.html">Transaksionet</a>
+          <a data-icon="◉" href="notifications.html">Njoftime</a>
+          <a data-icon="▣" class="active" href="services.html">Shërbimet</a>
+          <a data-icon="○" href="profile.html">Profili</a>
+          <a data-icon="◎" href="customer-service.html">Customer Service</a>
+          <a data-icon="◆" href="admin.html">Admin</a>
+        </nav>
+      </div>
+      <div class="sidebar-footer">
+        <a href="index.html" class="btn btn-outline-light w-100 mb-2">Kthehu në homepage</a>
+        <button type="button" class="btn btn-outline-danger w-100" id="sidebarSignOutBtn" hidden>⏻ Sign Out</button>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+
+<div class="topbar">
+  <div>
+    <h2 class="mb-1">Shërbimet dhe Paketat</h2>
+    <p class="text-muted mb-0">Krahaso paketat dhe shiko planin aktiv të përdoruesit.</p>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-lg-4">
+    <div class="dashboard-card h-100">
+      <h5 class="mb-3">Plani Aktiv</h5>
+      <div id="currentPlanCard"></div>
+    </div>
+  </div>
+
+  <div class="col-lg-8">
+    <div class="dashboard-card h-100">
+      <div class="card-header-inline">
+        <h5 class="mb-0">Krahasimi i Paketave</h5>
+      </div>
+      <div class="row g-3 mt-1" id="servicesGrid"></div>
+    </div>
+  </div>
+</div>
+
+<div class="simple-modal-overlay" id="servicePurchaseModal">
+  <div class="simple-modal-box">
+    <div class="p-4">
+      <div class="card-header-inline mb-3">
+        <h5 class="mb-0">Pagesa e Paketës</h5>
+        <button type="button" class="btn-close" id="closeServicePurchaseModal" aria-label="Mbyll"></button>
+      </div>
+
+      <div class="info-panel mb-4">
+        <div class="info-panel-item"><span>Paketa</span><strong id="serviceModalPlanName">-</strong></div>
+        <div class="info-panel-item"><span>Detaje</span><strong id="serviceModalPlanMeta">-</strong></div>
+        <div class="info-panel-item"><span>Shuma</span><strong id="serviceModalPlanAmount">0 ALL</strong></div>
+      </div>
+
+      <form id="servicePurchaseForm" class="needs-validation-custom" novalidate>
+        <input type="hidden" id="serviceSelectedPlan" />
+
+        <div class="mb-3">
+          <label for="servicePaymentMethod" class="form-label">Metoda e pagesës</label>
+          <select class="form-select" id="servicePaymentMethod" required>
+            <option value="">Zgjidh...</option>
+            <option>Kartë Krediti</option>
+            <option>Kartë Debiti</option>
+            <option>PayPal</option>
+            <option>Transfertë Bankare</option>
+          </select>
+          <small class="error-message"></small>
+        </div>
+
+        <div id="serviceCardPaymentFields" class="row g-3">
+          <div class="col-md-12">
+            <label for="serviceCardHolder" class="form-label">Emri në Kartë</label>
+            <input type="text" class="form-control" id="serviceCardHolder" required />
+            <small class="error-message"></small>
+          </div>
+          <div class="col-md-12">
+            <label for="serviceCardNumber" class="form-label">Numri i Kartës</label>
+            <input type="text" class="form-control" id="serviceCardNumber" maxlength="19" inputmode="numeric" required />
+            <small class="error-message"></small>
+          </div>
+          <div class="col-md-6">
+            <label for="serviceExpiryDate" class="form-label">MM/YY</label>
+            <input type="text" class="form-control" id="serviceExpiryDate" maxlength="5" inputmode="numeric" required />
+            <small class="error-message"></small>
+          </div>
+          <div class="col-md-6">
+            <label for="serviceCvv" class="form-label">CVV</label>
+            <input type="text" class="form-control" id="serviceCvv" maxlength="4" inputmode="numeric" required />
+            <small class="error-message"></small>
+          </div>
+        </div>
+
+        <div id="servicePaypalPaymentFields" class="row g-3" style="display:none">
+          <div class="col-12">
+            <label for="servicePaypalEmail" class="form-label">Email i PayPal</label>
+            <input type="email" class="form-control" id="servicePaypalEmail" required />
+            <small class="error-message"></small>
+          </div>
+        </div>
+
+        <div id="serviceBankTransferFields" class="row g-3" style="display:none">
+          <div class="col-md-5">
+            <label for="serviceBankName" class="form-label">Banka</label>
+            <input type="text" class="form-control" id="serviceBankName" required />
+            <small class="error-message"></small>
+          </div>
+          <div class="col-md-7">
+            <label for="serviceBankIban" class="form-label">IBAN</label>
+            <input type="text" class="form-control" id="serviceBankIban" required />
+            <small class="error-message"></small>
+          </div>
+        </div>
+
+        <div class="d-flex gap-2 justify-content-end mt-4">
+          <button type="button" class="btn btn-outline-secondary" id="cancelServicePurchaseBtn">Anulo</button>
+          <button type="submit" class="btn btn-primary">Paguaj dhe Aktivizo</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="simple-modal-overlay" id="serviceConfirmFreePlanModal">
+  <div class="simple-modal-box">
+    <div class="p-4 text-center">
+      <div style="font-size:2.5rem;margin-bottom:12px;">⚠️</div>
+      <h4 class="mb-2">Hiq Planin Aktiv?</h4>
+      <p class="text-muted mb-4">A je i sigurt që do të heqësh planin që ke aktiv? Llogaria jote do të kalojë tek "No active plan" dhe nuk do të ketë pagesë.</p>
+      <div class="d-flex gap-3 justify-content-center">
+        <button type="button" class="btn btn-outline-secondary" id="confirmFreePlanNo">Jo, Anulo</button>
+        <button type="button" class="btn btn-danger" id="confirmFreePlanYes">Po, Hiq Planin</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="simple-modal-overlay" id="serviceSuccessModal">
+  <div class="simple-modal-box">
+    <div class="p-4 text-center">
+      <div class="d-flex justify-content-end">
+        <button type="button" class="btn-close" id="closeServiceSuccessModal" aria-label="Mbyll"></button>
+      </div>
+      <div class="success-icon mb-3">✓</div>
+      <h4>Paketa u aktivizua me sukses</h4>
+      <p class="text-muted mb-3">Paketa u aktivizua vetëm pasi pagesa kaloi me sukses.</p>
+      <div class="info-panel text-start mb-4">
+        <div class="info-panel-item"><span>Paketa</span><strong id="serviceSuccessPlan">-</strong></div>
+        <div class="info-panel-item"><span>Metoda</span><strong id="serviceSuccessMethod">-</strong></div>
+        <div class="info-panel-item"><span>Shuma</span><strong id="serviceSuccessAmount">0 ALL</strong></div>
+      </div>
+      <button type="button" class="btn btn-primary" id="serviceSuccessDoneBtn">Në rregull</button>
+    </div>
+  </div>
+</div>
+
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/improvements.js"></script>
+  <script src="js/visual-upgrade.js"></script>
+</body>
+</html>
+
+
